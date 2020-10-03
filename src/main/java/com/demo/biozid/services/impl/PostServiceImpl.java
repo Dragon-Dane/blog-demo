@@ -38,10 +38,25 @@ public class PostServiceImpl implements PostService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         Post post = new Post();
+        post.setId(dto.getId());
         post.setAuthor(user);
         post.setLocation(locationRepository.findById(dto.getLocation()).get());
         post.setTitle(dto.getTitle());
         Post savedPost = postRepository.save(post);
         return savedPost;
+    }
+
+    @Override
+    public PostDto findById(Long id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if(post != null) {
+            PostDto dto = new PostDto();
+            dto.setId(id);
+            dto.setLocation(post.getLocation().getId());
+            dto.setTitle(post.getTitle());
+            dto.setMarked(post.getMarked());
+            return dto;
+        }
+        return new PostDto();
     }
 }

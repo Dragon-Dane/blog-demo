@@ -9,4 +9,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface PostService  {
 
     Post save(PostDto postDto);
+    PostDto findById(Long id);
 }

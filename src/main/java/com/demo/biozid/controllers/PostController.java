@@ -2,7 +2,6 @@ package com.demo.biozid.controllers;
 
 import com.demo.biozid.dtos.PostDto;
 import com.demo.biozid.models.Location;
-import com.demo.biozid.models.Post;
 import com.demo.biozid.repos.LocationRepository;
 import com.demo.biozid.services.PostService;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,14 +33,19 @@ public class PostController {
     }
 
     @GetMapping("")
-    public String fundAccountCategoryList(Model model) {
+    public String newPostCreation(Model model) {
+        return "create-post";
+    }
+
+    @GetMapping("{id}")
+    public String editPost(Model model, @PathVariable("id")Long id) {
+        model.addAttribute("post", postService.findById(id) );
         return "create-post";
     }
 
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("post") @Valid PostDto postDto, BindingResult result) {
-
+    public String savePost(@ModelAttribute("post") @Valid PostDto postDto, BindingResult result) {
         if (result.hasErrors()) return "create-post";
         postService.save(postDto);
         return "redirect:/post?success";
