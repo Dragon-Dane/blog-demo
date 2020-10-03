@@ -2,7 +2,6 @@ package com.demo.biozid.services;
 
 import com.demo.biozid.dtos.PostDto;
 import com.demo.biozid.models.Post;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
