@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("post")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class PostController {
+public class PostController extends BaseController {
     private final LocationRepository locationRepository;
     private final PostService postService;
 

@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class HomeController {
+public class HomeController extends BaseController {
 
     private final PostRepository postRepository;
 
     @GetMapping("/")
     public String root(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("postList", postRepository.findAll());
-        model.addAttribute("anonymousUser", auth.getName().equals("anonymousUser"));
-        model.addAttribute("user", !auth.getName().equals("anonymousUser"));
         return "index";
     }
 

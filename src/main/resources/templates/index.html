@@ -39,7 +39,7 @@
         <tbody>
         <tr th:each="p : ${postList}">
             <td>
-                <div class="row"> <p th:text="${p.id}"></p> </div>
+                <div class="row"> <p th:text="${p.title}"></p> </div>
                 <div class="row">
                 <div class="col-sm-3" th:text="${p.location.title}"></div>
                 <div class="col-sm-3" th:text="${#dates.format(p.createdAt, 'dd-MMM-yyyy')}"></div>
