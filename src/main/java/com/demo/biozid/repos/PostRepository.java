@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long > {
 
-    List<Post> findAllByAuthor(User user);
+    List<Post> findAllByAuthorOrderByMarkedDesc(User user);
+
+    List<Post> findAllByMarkedIsFalse();
 
 }

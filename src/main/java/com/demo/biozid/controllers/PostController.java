@@ -34,7 +34,7 @@ public class PostController extends BaseController {
     }
     @ModelAttribute("postList")
     public List<Post> personalPostList() {
-        return postService.findAll();
+        return postService.findAllPersonalPosts();
     }
 
     @GetMapping
@@ -44,7 +44,6 @@ public class PostController extends BaseController {
 
     @GetMapping("list")
     public String listOfAllPost(Model model) {
-        model.addAttribute("postList", postService.findAll());
         return "personal-list";
     }
 

@@ -1,7 +1,6 @@
 package com.demo.biozid.services.impl;
 
 import com.demo.biozid.dtos.PostDto;
-
 import com.demo.biozid.models.Post;
 import com.demo.biozid.models.User;
 import com.demo.biozid.repos.LocationRepository;
@@ -10,11 +9,10 @@ import com.demo.biozid.services.PostService;
 import com.demo.biozid.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
+
 
 import java.util.List;
 
@@ -62,8 +60,13 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> findAll() {
+        return postRepository.findAllByMarkedIsFalse();
+    }
+
+    @Override
+    public List<Post> findAllPersonalPosts() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
-        return postRepository.findAllByAuthor(user);
+        return postRepository.findAllByAuthorOrderByMarkedDesc(user);
     }
 }
