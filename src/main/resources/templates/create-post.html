@@ -53,7 +53,7 @@
                 <div class="form-group"
                      th:classappend="${#fields.hasErrors('location')}? 'has-error':''">
                     <label for="location" class="control-label">Location</label>
-                    <select id="location" class="form-control" th:field="*{location}">
+                    <select id="location" class="form-control" th:field="*{location}" th:required="true">
                         <option th:value="-1">--Select Location--</option>
                         <option th:each="location : ${locations}"
                                 th:value="${location.id}" th:text="${location.title}">

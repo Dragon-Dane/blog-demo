@@ -2,8 +2,12 @@ package com.demo.biozid.dtos;
 
 
 import lombok.Data;
+
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Data
 public class PostDto {
 
@@ -12,10 +16,9 @@ public class PostDto {
 	@NotEmpty
 	private String title;
 
-	@NotEmpty
+	@NotNull
+	@Min(value = 0,message = "Select Location")
 	private Long location;
 
-	@AssertTrue
-	private Boolean marked;
-
+	private Boolean marked = false;
 }
