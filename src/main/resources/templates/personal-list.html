@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <title>Registration</title>
+</head>
+<body>
+<h2>Edit Post</h2>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="navbar-brand">
+            <button type="button" class="navbar-toggler collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully Posted!</div>
+            </div>
+
+            <h6>Create Post</h6>
+            <form th:action="@{/post}" th:object="${post}" method="post">
+
+                <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                   th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
+
+                <input hidden id="id" class="form-control" th:field="*{id}" />
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('title')}? 'has-error':''">
+                    <label for="title" class="control-label">title</label> <input
+                        id="title" class="form-control" th:field="*{title}" />
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('title')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('location')}? 'has-error':''">
+                    <label for="location" class="control-label">Location</label>
+                    <select id="location" class="form-control" th:field="*{location}" th:required="true">
+                        <option th:value="-1">--Select Location--</option>
+                        <option th:each="location : ${locations}"
+                                th:value="${location.id}" th:text="${location.title}">
+                    </select>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('location')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('marked')}? 'has-error':''">
+                    <input id="marked" type="checkbox" th:field="*{marked}" />   <label
+                        class="control-label" for="marked"> Mark as Private
+                </label>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('marked')}" th:text="${error}">Validation
+                        error</p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.5.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
