@@ -28,7 +28,6 @@ public class PostController extends BaseController {
     public PostDto userRegistrationDto() {
         return new PostDto();
     }
-
     @ModelAttribute("locations")
     public List<Location> locationList() {
         return locationRepository.findAll();
