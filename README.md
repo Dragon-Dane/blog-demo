@@ -32,3 +32,5 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 ```shell
 mvn spring-boot:run
 ```
+## Project ER Diagram
+<img src="sample/er-diagram.JPG"/>
