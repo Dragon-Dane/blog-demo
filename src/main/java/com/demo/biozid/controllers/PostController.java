@@ -47,6 +47,6 @@ public class PostController {
 
         if (result.hasErrors()) return "create-post";
         postService.save(postDto);
-        return "redirect:/create-post?success";
+        return "redirect:/post?success";
     }
 }

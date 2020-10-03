@@ -26,4 +26,6 @@ public class Post {
 	@Column(nullable = false)
 	private Date createdAt = new Date();
 
+	private Boolean marked = false;
+
 }
