@@ -55,6 +55,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
+
+    @Override
     public List<Post> findAll() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());

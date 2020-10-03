@@ -49,10 +49,16 @@ public class PostController {
         return "personal-list";
     }
 
-    @GetMapping("{id}")
+    @GetMapping("edit/{id}")
     public String editPost(Model model, @PathVariable("id")Long id) {
         model.addAttribute("post", postService.findById(id) );
         return "create-post";
+    }
+
+    @GetMapping("delete/{id}")
+    public String deletePost(Model model, @PathVariable("id")Long id) {
+        postService.deleteById(id);
+        return "personal-list";
     }
 
 
