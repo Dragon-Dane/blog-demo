@@ -9,18 +9,15 @@
     <title>Registration</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
+        <div class="navbar-brand">
+            <button type="button" class="navbar-toggler collapsed"
                     data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                     aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration and
-                Login Module</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>
         </div>
     </div>
 </nav>
@@ -37,7 +34,7 @@
                     to our awesome app!</div>
             </div>
 
-            <h1>Registration</h1>
+            <h6>Registration</h6>
             <form th:action="@{/registration}" th:object="${user}" method="post">
 
                 <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
