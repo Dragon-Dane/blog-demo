@@ -2,6 +2,7 @@ package com.demo.biozid.controllers;
 
 import com.demo.biozid.dtos.PostDto;
 import com.demo.biozid.models.Location;
+import com.demo.biozid.models.Post;
 import com.demo.biozid.repos.LocationRepository;
 import com.demo.biozid.services.PostService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,10 +33,20 @@ public class PostController {
     public List<Location> locationList() {
         return locationRepository.findAll();
     }
+    @ModelAttribute("postList")
+    public List<Post> personalPostList() {
+        return postService.findAll();
+    }
 
-    @GetMapping("")
+    @GetMapping
     public String newPostCreation(Model model) {
         return "create-post";
+    }
+
+    @GetMapping("list")
+    public String listOfAllPost(Model model) {
+        model.addAttribute("postList", postService.findAll());
+        return "personal-list";
     }
 
     @GetMapping("{id}")

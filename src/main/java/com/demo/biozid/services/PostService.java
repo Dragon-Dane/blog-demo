@@ -1,13 +1,16 @@
 package com.demo.biozid.services;
 
 import com.demo.biozid.dtos.PostDto;
-import com.demo.biozid.dtos.UserRegistrationDto;
 import com.demo.biozid.models.Post;
-import com.demo.biozid.models.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+
 
 public interface PostService  {
 
     Post save(PostDto postDto);
     PostDto findById(Long id);
+
+    List<Post> findAll();
 }

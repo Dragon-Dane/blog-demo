@@ -28,5 +28,9 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    public String getFullName(){
+        return firstName + lastName;
+    }
+
 }
 
